@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const clickSound = new Audio("sound/click.mp3");
   clickSound.preload = "auto";
   clickSound.volume = 1;
+  clickSound.addEventListener("error", () => {
+    console.warn("sound/click.mp3 の読み込みに失敗しました。sound/success.mp3 を試します。");
+    clickSound.src = "sound/success.mp3";
+    clickSound.load();
+  });
   clickSound.load();
 
   button.addEventListener("click", (e) => {
